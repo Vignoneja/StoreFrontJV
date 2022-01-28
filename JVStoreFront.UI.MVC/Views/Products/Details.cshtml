@@ -1,0 +1,87 @@
+﻿@model JVStoreFront.DATA.EF.Product
+
+@{
+    ViewBag.Title = Model.ProductTitle + " Details";
+}
+
+<div id="pContainer">
+    <div id="pHeader">
+        @Html.DisplayFor(model => model.ProductTitle)
+    </div>
+    <div id="pLeft">
+        <p>
+            <img src="~/Content/images/products@(Model.GameImage)" alt="Model.ProductTitle" />
+        </p>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.ESRB):</strong>
+            @Html.DisplayFor(model => model.ESRB.ESRBName)
+        </p>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.NumPlayer.NumPlayers)</strong>
+            @Html.DisplayFor(model => model.NumPlayer.NumPlayers)
+        </p>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.ReleaseDate)</strong>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </p>
+        
+    </div>
+    <div id="bRight">
+        <p class="text-right">
+            <strong>@Html.DisplayNameFor(model => model.Price)</strong>
+            @Html.DisplayFor(model => model.Price)
+        </p>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.Quantity)</strong>
+            @Html.DisplayFor(model => model.Quantity)
+        </p>
+        @if (User.IsInRole("Admin"))
+        {
+            <p>
+                <strong>@Html.DisplayNameFor(model => model.UnitsSold)</strong>
+                @Html.DisplayFor(model => model.UnitsSold)
+            </p>
+        }
+        @if (Model.StockStatus.StockStatusName == "In Stock")
+        {
+
+        <p>            
+            @using (Html.BeginForm("AddToCart", "Products", new { @ProductID = Model.ProductId }, FormMethod.Post, new { @class = "text-center" }))
+            {
+                @Html.HiddenFor(p => p.ProductId)
+                <span class="label">Quantity: </span>
+                @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50; display: inline;" })
+                <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+            }
+        </p>
+        }
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.StockStatus.StockStatusName)</strong>
+            @Html.DisplayFor(model => model.StockStatus.StockStatusName)
+        </p>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.MediaType.MediaType1)</strong>
+            @Html.DisplayFor(model => model.MediaType.MediaType1)
+        </p>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.Publisher.PublisherName)</strong>
+            @Html.DisplayFor(model => model.Publisher.PublisherName)
+        </p>
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.ProductDesc)</strong>
+            @Html.DisplayFor(model => model.ProductDesc)
+        </p>
+    </div>
+    <div class="clearfix"></div>
+    <div id="pFooterLeft">
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId })
+        }
+    </div>
+    <div id="pFooterRight">
+        @Html.ActionLink("Back To Games", "Index", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="clearfix"></div>
+
+</div>

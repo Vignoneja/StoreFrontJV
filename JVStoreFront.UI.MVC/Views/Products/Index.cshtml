@@ -1,0 +1,162 @@
+﻿@model IEnumerable<JVStoreFront.DATA.EF.Product>
+
+@{
+    ViewBag.Title = "Video Games";
+}
+
+<h2 id="one">@ViewBag.Title</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+    <div class="Container">
+        <table id="productsTable" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GameImage)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.ProductTitle)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StockStatus.StockStatusName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MediaType.MediaType1)
+                    </th>
+                    @*<th></th>*@
+
+                    @*
+                    ****UNUSED DATA****
+                        <th>
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductDesc)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReleaseDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UnitsSold)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ESRB.ESRBName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NumPlayer.NumPlayers)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Publisher.PublisherName)
+                    </th>
+                    *@
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Details", new {id = item.ProductId})" title="@item.ProductTitle">
+
+                                @if (item.GameImage != "noImage.png")
+                                {
+                                    <img src="~/Content/images/productst_@item.GameImage" alt="@item.ProductTitle" /> @item.ProductTitle
+                                }
+                                else
+                                {
+                                    <img src="~/Content/images/products/t_noImage.jpg" alt="@item.ProductTitle" style="max-width: 40%" /> @item.ProductTitle
+                                }
+                            </a>
+                        </td>
+                        @*<td>
+                            @Html.ActionLink(item.ProductTitle, "Details", new { id = item.ProductId })
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StockStatus.StockStatusName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MediaType.MediaType1)
+                        </td>
+
+                        @*Trying to add "AddToCart" Button to end of item for quick add to cart functionality*@
+
+                        @*<td>
+                            <p>
+                                @using (Html.BeginForm("AddToCart", "Products", new { @ProductID = Model.ProductId }, FormMethod.Post, new { @class = "text-center" }))
+                                {
+                                    @Html.HiddenFor(p => p.ProductId)
+                                    <span class="label">Quantity: </span>
+                                    @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50; display: inline;" })
+                                    <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                                }
+                            </p>
+                        </td>*@
+
+
+                        @*
+                        ****UNUSED DATA****
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductDesc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReleaseDate)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnitsSold)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ESRB.ESRBName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumPlayer.NumPlayers)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
+                        </td>*@
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "text-danger" })
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#productsTable').DataTable();
+        });
+    </script>
+}

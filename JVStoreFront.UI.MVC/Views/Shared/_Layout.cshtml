@@ -1,0 +1,102 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Forty by HTML5 UP
+    html5up.net |
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>The Gamestore</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*<link rel="stylesheet" href="~/Content/css/main.css" />
+    <noscript><link rel="stylesheet" href="~/Content/css/noscript.css" /></noscript>    
+    <link href="~/Content/css/fontawesome-all.min.css" rel="stylesheet" />*@
+
+    @*Datatables.net  *@
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <a href="@Url.Action("Index","Home")" class="logo"><strong>GameStore</strong> <span>Home</span></a>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li><a href="@Url.Action("Index","Products")">Shop</a></li>
+                <li>
+                    @Html.ActionLink("Cart", "Index", "ShoppingCart")
+                </li>
+            </ul>
+            <ul class="actions stacked">
+
+                <li>
+                    @Html.Partial("_LoginPartial")
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Banner -->
+        <section id="banner" @*class="major"*@>
+            <div class="inner">
+                <header class="major">
+                    <h1>GameStore</h1>
+                </header>
+                <div class="content">
+                    <p>
+                        Video game store filled with all your unique gaming needs.
+                    </p>
+                    <ul class="actions">
+                        <li><a href="@Url.Action("Index","Products")" class="button next scrolly">Get Gaming</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Scripts so Menu will work -->
+        @Scripts.Render("~/bundles/jquery")
+
+        @RenderBody()
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <ul class="icons">
+                    @*<li><a href="https://www.twitter.com/" target="_blank"class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="https://www.facebook.com/" target="_blank" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>*@
+                    <li><a href="https://github.com/Vignoneja/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/justin-vignone/" target="_blank" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>Copyright &copy; @DateTime.Now.Year GameStore</li>
+                    <li>Template from : <a href="https://html5up.net/" target="_blank">html5up</a></li>
+                    <li>Styled by: <a href="http://www.vignonetech.com" target="_blank">VignoneTech</a></li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+      
+
+    <!--jQueryUI reference-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--Datatables.net-->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    @RenderSection("scripts", false)
+
+</body>
+</html>

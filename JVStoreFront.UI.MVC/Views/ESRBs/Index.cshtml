@@ -1,0 +1,33 @@
+﻿@model IEnumerable<JVStoreFront.DATA.EF.ESRB>
+
+@{
+    ViewBag.Title = "ESRB's";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ESRBName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESRBName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ESRBID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ESRBID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ESRBID })
+        </td>
+    </tr>
+}
+
+</table>

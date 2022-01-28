@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNet.Identity 
+@using JVStoreFront.DATA.EF; 
+@{
+    int location = User.Identity.GetUserName().IndexOf("@");
+}
+@if (Request.IsAuthenticated)
+{
+    GameStoreEntities db = new GameStoreEntities();
+
+    string userID = User.Identity.GetUserId();
+
+    UserDetail currentUser = db.UserDetails.Where(ud => ud.UserID == userID).FirstOrDefault();
+
+    string userFN = "Guest";  
+
+    if (currentUser != null)
+    {
+        userFN = currentUser.FirstName;        
+    }
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="links">
+            <li class="button fit">
+                @Html.ActionLink($"Welcome {currentUser.FirstName}", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage"})
+            </li>
+            <li class="button primary fit"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="links">
+        <li class="button fit">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li class="button primary fit">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

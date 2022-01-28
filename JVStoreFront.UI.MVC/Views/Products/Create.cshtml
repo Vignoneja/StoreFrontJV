@@ -1,0 +1,119 @@
+﻿@model JVStoreFront.DATA.EF.Product
+
+@{
+    ViewBag.Title = "Add a New Game";
+}
+<div class="Container">
+    <h2>@ViewBag.Title</h2>
+
+
+    @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="pContainer">
+
+            <div id="pHeader">
+                @Html.EditorFor(model => model.ProductTitle, new { htmlAttributes = new { @class = "form-control", @placeholder = "Game Title" } })
+                @Html.ValidationMessageFor(model => model.ProductTitle, "", new { @class = "text-danger" })
+            </div>
+
+            <div id="pLeft">
+                <p>
+                    @*<img src="~/Content/images/products/noImage.png" alt="No Image" />
+                        <br />
+                        No Images Taller than 350px: <input type="file" name="gameImage" />*@
+                    @Html.LabelFor(model => model.GameImage, htmlAttributes: new { @class = "control-label col md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="gameImage" />
+                    </div>
+                </p>
+                <p>
+                    @Html.LabelFor(model => model.PlayerID, "PlayerID", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.DropDownList("PlayerID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PlayerID, "", new { @class = "text-danger" })
+                </p>
+                <p>
+                    @Html.LabelFor(model => model.ESRBID, "ESRBID", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.DropDownList("ESRBID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ESRBID, "", new { @class = "text-danger" })
+                </p>
+                <p>
+                    @Html.LabelFor(model => model.UnitsSold, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.EditorFor(model => model.UnitsSold, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UnitsSold, "", new { @class = "text-danger" })
+                </p>
+                <p>
+                    @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div id="pRight" class="editCreate">
+                <p class="text-right">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </p>
+                <p>
+                    @Html.LabelFor(model => model.StockStatusID, "StockStatusID", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.DropDownList("StockStatusID", null, "[-Choose A Status-]", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StockStatusID, "", new { @class = "text-danger" })
+                </p>
+                <p>
+                    @Html.LabelFor(model => model.PublisherID, "PublisherID", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.DropDownList("PublisherID", null, "[-Choose a Publisher-]", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PublisherID, "", new { @class = "text-danger" })
+                </p>
+                <p>
+                    @Html.LabelFor(model => model.MediaID, "MediaID", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.DropDownList("MediaID", null, "[-Choose Media Type-]", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MediaID, "", new { @class = "text-danger" })
+                </p>
+                <p>
+                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </p>
+                <p class="text-left">
+                    @Html.LabelFor(model => model.ProductDesc, htmlAttributes: new { @class = "form-control" })
+                </p>
+                <p>
+                    @Html.EditorFor(model => model.ProductDesc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductDesc, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="clearfix"></div>
+            <div id="pFooterLeft">
+                @Html.ActionLink("Cancel", "index", null, new { @class = "btn btn-secondary" })
+            </div>
+            <div id="pFooterRight">
+                <input type="submit" value="Add Game" class="btn btn-primary" />
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $("#ReleaseDate").datepicker({ changeMonth: true, changeYear: true, yearRange: "-100:+00" });
+        });
+    </script>
+}

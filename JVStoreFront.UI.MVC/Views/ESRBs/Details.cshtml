@@ -1,0 +1,26 @@
+﻿@model JVStoreFront.DATA.EF.ESRB
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ESRB</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ESRBName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESRBName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ESRBID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

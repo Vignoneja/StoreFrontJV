@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9aaf13050ed6472b9e9c44beb16be444" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="GameStoreModel.Department" Width="1.5" PointX="5.875" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameStoreModel.Employee" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameStoreModel.ESRB" Width="1.5" PointX="1.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameStoreModel.MediaType" Width="1.5" PointX="1.375" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameStoreModel.NumPlayer" Width="1.5" PointX="1.375" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameStoreModel.Product" Width="1.5" PointX="3.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameStoreModel.Publisher" Width="1.5" PointX="5.875" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameStoreModel.StockStatus" Width="1.5" PointX="3.375" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameStoreModel.UserDetail" Width="1.5" PointX="8" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="GameStoreModel.FK_Employees_Departments1" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK_Employees_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK_Products_ESRB" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK_Products_MediaType" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK_Products_NumPlayer" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK_Products_Publishers" ManuallyRouted="false" />
+        <AssociationConnector Association="GameStoreModel.FK_Products_StockStatus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
