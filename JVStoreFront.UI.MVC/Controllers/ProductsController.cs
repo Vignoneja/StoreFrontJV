@@ -143,11 +143,11 @@ namespace JVStoreFront.UI.MVC.Controllers
 
                         #endregion
                         
-                    }//END IF
-                    
-               products.GameImage = imageName;                   
+                    }//END IF                    
 
                 }//END IF
+
+               products.GameImage = imageName;                   
 
                 #endregion
 
@@ -212,7 +212,7 @@ namespace JVStoreFront.UI.MVC.Controllers
                         imageName = Guid.NewGuid() + ext;
 
                         #region Resize Image Functionality
-                        string savePath = Server.MapPath("~/Content/images/products");
+                        string savePath = Server.MapPath("~/Content/images/products/");
 
                         Image convertedImage = Image.FromStream(gameImage.InputStream);
 
@@ -244,7 +244,8 @@ namespace JVStoreFront.UI.MVC.Controllers
             return View(products);
         }
 
-        // GET: Products/Delete/5       
+        // GET: Products/Delete/5  
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -261,14 +262,17 @@ namespace JVStoreFront.UI.MVC.Controllers
 
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Product products = db.Products.Find(id);
-
+            if (products.GameImage != "" && products.GameImage != null)
+            {
             string path = Server.MapPath("~/Content/images/products");
 
             ImageUtility.Delete(path, products.GameImage);
+            }
 
             db.Products.Remove(products);
             db.SaveChanges();

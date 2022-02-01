@@ -1,7 +1,7 @@
 ﻿@model JVStoreFront.DATA.EF.Product
 
 @{
-    ViewBag.Title = "Edit -" + Model.ProductTitle;
+    ViewBag.Title = "Edit - " + Model.ProductTitle;
 }
 
 <h2>@ViewBag.Title</h2>
@@ -25,13 +25,13 @@
                 <input type="file" name="GameImage" />
             </p>
             <p>
-                @Html.LabelFor(model => model.PlayerID, "PlayerID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.PlayerID, "Number of Players", htmlAttributes: new { @class = "control-label col-md-2" })
 
                 @Html.DropDownList("PlayerID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PlayerID, "", new { @class = "text-danger" })
             </p>
             <p>
-                @Html.LabelFor(model => model.ESRBID, "ESRBID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ESRBID, "ESRB Rating", htmlAttributes: new { @class = "control-label col-md-2" })
 
                 @Html.DropDownList("ESRBID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ESRBID, "", new { @class = "text-danger" })
@@ -57,19 +57,22 @@
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </p>
             <p>
-                @Html.LabelFor(model => model.StockStatusID, "StockStatusID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.StockStatusID, "Game Status", htmlAttributes: new { @class = "control-label col-md-2" })
 
                 @Html.DropDownList("StockStatusID", null, "[-Choose A Status-]", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.StockStatusID, "", new { @class = "text-danger" })
             </p>
             <p>
-                @Html.LabelFor(model => model.PublisherID, "PublisherID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <button class="button primary small">Add a Publisher</button>
+            </p>
+            <p>
+                @Html.LabelFor(model => model.PublisherID, "Publisher", htmlAttributes: new { @class = "control-label col-md-2" })
 
                 @Html.DropDownList("PublisherID", null, "[-Choose a Publisher-]", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PublisherID, "", new { @class = "text-danger" })
             </p>
             <p>
-                @Html.LabelFor(model => model.MediaID, "MediaID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.MediaID, "Media Type Available", htmlAttributes: new { @class = "control-label col-md-2" })
 
                 @Html.DropDownList("MediaID", null, "[-Choose Media Type-]", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MediaID, "", new { @class = "text-danger" })
@@ -80,7 +83,7 @@
                 @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
             </p>
-            <p class="text-left">
+            <p>
                 @Html.LabelFor(model => model.ProductDesc, htmlAttributes: new { @class = "form-control" })
             </p>
             <p>
@@ -103,7 +106,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(function () {
-            $("#ReleaseDate").datepicker({ changeMonth: true, changeYear: true, yearRange: "1969:+10" });
+            $("#ReleaseDate").datepicker({ changeMonth: true, dateFormat: 'dd/mm/yy', changeYear: true,showAnimations: "slideDown", yearRange: "1969:+10" });            
         });
     </script>
 }

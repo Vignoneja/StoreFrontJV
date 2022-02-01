@@ -10,6 +10,7 @@ using JVStoreFront.DATA.EF;
 
 namespace JVStoreFront.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class NumPlayersController : Controller
     {
         private GameStoreEntities db = new GameStoreEntities();

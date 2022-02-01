@@ -448,15 +448,6 @@
     <Content Include="Views\Products\Upcoming.cshtml" />
     <Content Include="Views\Home\ContactAjax.cshtml" />
     <Content Include="Views\Home\ContactConfirmation.cshtml" />
-    <Content Include="Web - Copy.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web - Copy.Debug.config">
-      <DependentUpon>Web - Copy.config</DependentUpon>
-    </Content>
-    <Content Include="Web - Copy.Release.config">
-      <DependentUpon>Web - Copy.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,7 +10,7 @@
     </div>
     <div id="pLeft">
         <p>
-            <img src="~/Content/images/products@(Model.GameImage)" alt="Model.ProductTitle" />
+            <img src="~/Content/images/products/@Model.GameImage" alt="@Model.ProductTitle" />
         </p>
         <p>
             <strong>@Html.DisplayNameFor(model => model.ESRB):</strong>
@@ -42,7 +42,7 @@
                 @Html.DisplayFor(model => model.UnitsSold)
             </p>
         }
-        @if (Model.StockStatus.StockStatusName == "In Stock")
+        @if (Model.StockStatus.StockStatusName == "In Stock" && Model.ReleaseDate <= DateTime.Now)
         {
 
         <p>            
@@ -50,8 +50,8 @@
             {
                 @Html.HiddenFor(p => p.ProductId)
                 <span class="label">Quantity: </span>
-                @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 50; display: inline;" })
-                <input type="submit" value="Add to Cart" class="btn btn-primary" name="qty" />
+                @Html.TextBox("Qty", 1, new { @class = "form-control", @style = "max-width: 15; display: inline;" })
+                <input type="submit" value="Add to Cart" class="button small primary" name="qty" />
             }
         </p>
         }

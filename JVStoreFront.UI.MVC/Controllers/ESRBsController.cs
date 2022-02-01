@@ -10,6 +10,7 @@ using JVStoreFront.DATA.EF;
 
 namespace JVStoreFront.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ESRBsController : Controller
     {
         private GameStoreEntities db = new GameStoreEntities();
@@ -45,6 +46,7 @@ namespace JVStoreFront.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ESRBID,ESRBName")] ESRB eSRB)
         {
@@ -59,6 +61,7 @@ namespace JVStoreFront.UI.MVC.Controllers
         }
 
         // GET: ESRBs/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,6 +80,7 @@ namespace JVStoreFront.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ESRBID,ESRBName")] ESRB eSRB)
         {
@@ -90,6 +94,7 @@ namespace JVStoreFront.UI.MVC.Controllers
         }
 
         // GET: ESRBs/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +110,7 @@ namespace JVStoreFront.UI.MVC.Controllers
         }
 
         // POST: ESRBs/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

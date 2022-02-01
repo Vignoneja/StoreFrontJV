@@ -13,7 +13,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div id="pContainer">
 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
@@ -23,10 +23,7 @@
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Email)
-            </div>
-            <div>
-                @Html.LabelFor(model => model.)
-            </div>
+            </div>            
         </div>
         <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
@@ -48,7 +45,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Admins", "Index")
 </div>
 
 @section Scripts {

@@ -1,62 +1,74 @@
 ﻿@model IEnumerable<JVStoreFront.DATA.EF.Publisher>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Video Game Publishers";
 }
 
 <h2>@ViewBag.Title</h2>
 @if (User.IsInRole("Admin"))
 {
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p class="button fit primary">
+        @Html.ActionLink("Add a New Publisher", "Create")
+    </p>
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PublisherName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublisherName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive) 
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.PublisherID }) |
-            @if (User.IsInRole("Admin"))
+<div>
+    <table id="productsTable" class="table-wrapper">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PublisherName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-            @Html.ActionLink("Edit | ", "Edit", new { id=item.PublisherID }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.PublisherID })
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublisherName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>                    
+                    <td>
+                        <button class="button small primary">
+                            @Html.ActionLink("Details", "Details", new { id = item.PublisherID })
+                        </button> |
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <button class="button small">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.PublisherID })
+                            </button>
+                            <button class="button small primary">
+                                @Html.ActionLink("Delete", "Delete", new { id = item.PublisherID })
+                            </button>
+                        }
+                    </td>
+                </tr>
             }
-        </td>
-    </tr>
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#productsTable').DataTable();
+        });
+    </script>
 }
-
-</table>

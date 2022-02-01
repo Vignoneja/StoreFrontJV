@@ -1970,6 +1970,7 @@ select {
 
 textarea {
     padding: 0.75em 1em;
+    height: 10em;
 }
 
 input[type="checkbox"],
@@ -2355,13 +2356,15 @@ ul.icons {
 
 /* Pagination */
 
-ul.pagination {
+#productsTable_paginate {
     cursor: default;
     list-style: none;
     padding-left: 0;
 }
 
-    ul.pagination li {
+    /*ul.pagination li*/
+    #productsTable_previous
+    {
         display: inline-block;
         padding-left: 0;
         vertical-align: middle;
@@ -3916,6 +3919,7 @@ body.is-menu-visible #menu {
         opacity: 1;
         visibility: visible;
     }
+
 /*Products Details, Create, and Edit Formatting*/
 #pContainer {
     border: 5px solid #535BA0;
@@ -3965,9 +3969,9 @@ body.is-menu-visible #menu {
     color: black;
 }
 
-textarea#Description {
-    height: 10em;
-    resize: both;
+#ProductDesc {
+    height: 10em !important;
+    resize: both !important;
 }
 
 #pRight.editCreate {
@@ -3994,14 +3998,14 @@ textarea {
     width: 60%;
     margin: auto;
 }
-/*#productsTable_info,
+#productsTable_info,
 #productsTable_previous,
 #productsTable_paginate,
 #productsTable_next{
     color: #fff;
 }
 #productsTable {
-    color: black;
+    color: white !important;
     clear: both !important;
 }
 .paginate_button previous disabled{
@@ -4011,13 +4015,9 @@ textarea {
     padding: 3em;
 }
 #ProductDesc{
-
-}*/
-
-/*Container*/
-/*.Container{
-    padding: 2em;
+    padding: .75em 1em;
+    
 }
-#contactConfirmation{
-    display: none;
-}*/
+#productsTable_paginate{
+
+}

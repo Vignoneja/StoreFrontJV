@@ -8,67 +8,70 @@
     decimal? cartTotal = 0;
     int totalCountOfItems = 0;
 }
-<p class="text-right">
-    @Html.ActionLink("Back to Shopping", "Index", "Products", null, new { @class = "btn btn-info" })
-</p>
-<h2 id="one" class="text-center">@ViewBag.Title</h2>
-
-@if (Model.Count == 0)
-{
-    <p class="alert alert-warning">
-        @ViewBag.Message
+<div id="pContainer">
+    <p class="button fit primary">
+        @Html.ActionLink("Back to Shopping", "Index", "Products", null, new { @class = "btn btn-info" })
     </p>
-}
-else
-{
-    <table class="table">
-        <tr>
-            <th>Game Title</th>
-            <th>Quantity</th>            
-            <th>Price</th>
-            <th>Total</th>
-            <th></th>
-        </tr>
+    <h2 id="one" class="text-center">@ViewBag.Title</h2>
 
-        @foreach (var item in Model)
-        {            
+    @if (Model.Count == 0)
+    {
+        <p class="alert alert-warning">
+            @ViewBag.Message
+        </p>
+    }
+    else
+    {
+        <table class="table">
             <tr>
-                <td>
-                    <img src="~/Content/images/productst_@item.Value.Product.GameImage" alt="@item.Value.Product.ProductTitle" />
-                </td>
-                <td>
-
-                    @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
-                    {
-                        @Html.Hidden("productID", item.Key)
-                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", @style = "max-width: 100px; display: inline; text-color: black;" })
-                        <input type="submit" value="Update Quantity" class="btn btn-info" />
-                    }
-                    @{                        
-                        totalCountOfItems += item.Value.Qty;
-                    }
-                </td>
-                <td>
-                    @string.Format($"{item.Value.Product.Price:c}")
-                </td>
-                <td>
-                    @{
-                        decimal? lineTotal = item.Value.Product.Price * item.Value.Qty;
-                        cartTotal += lineTotal;
-                    }                    
-                    @string.Format($"{lineTotal:c}")
-                </td>
-
-                <td>
-                    
-                    @Html.ActionLink("Remove from Cart", "RemoveFromCart", new { id = item.Key })
-                </td>
+                <th>Game Title</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
             </tr>
-        }
 
-    </table>
-    <p class="alert alert-success text-center" style="font-size:1.25em;">
-        You have @totalCountOfItems item@(totalCountOfItems == 1 ? "" : "s") in your cart.
-        Your total before taxes and shipping is : @string.Format($"{cartTotal:c}")
-    </p>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Content/images/products/t_@item.Value.Product.GameImage" alt="@item.Value.Product.ProductTitle" /> @item.Value.Product.ProductTitle
+                    </td>
+                    <td>
+
+                        @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
+                        {
+                            @Html.Hidden("productID", item.Key)
+                            @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", @style = "max-width: 100px; display: inline; text-color: black;" })
+                            <input type="submit" value="Update Quantity" class="btn btn-info" />
+                        }
+                        @{
+                            totalCountOfItems += item.Value.Qty;
+                        }
+                    </td>
+                    <td>
+                        @string.Format($"{item.Value.Product.Price:c}")
+                    </td>
+                    <td>
+                        @{
+                            decimal? lineTotal = item.Value.Product.Price * item.Value.Qty;
+                            cartTotal += lineTotal;
+                        }
+                        @string.Format($"{lineTotal:c}")
+                    </td>
+
+                    <td>
+
+                        @Html.ActionLink("Remove from Cart", "RemoveFromCart", new { id = item.Key })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <p class="alert alert-success text-center" style="font-size:1.25em;">
+            You have @totalCountOfItems item@(totalCountOfItems == 1 ? "" : "s") in your cart.
+            Your total before taxes and shipping is : @string.Format($"{cartTotal:c}")
+        </p>
+        <button class="button fit">Check Out</button>
+    }
+</div>

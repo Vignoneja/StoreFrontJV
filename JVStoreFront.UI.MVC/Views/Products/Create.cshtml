@@ -21,22 +21,19 @@
 
             <div id="pLeft">
                 <p>
-                    @*<img src="~/Content/images/products/noImage.png" alt="No Image" />
-                        <br />
-                        No Images Taller than 350px: <input type="file" name="gameImage" />*@
                     @Html.LabelFor(model => model.GameImage, htmlAttributes: new { @class = "control-label col md-2" })
                     <div class="col-md-10">
                         <input type="file" name="gameImage" />
                     </div>
                 </p>
                 <p>
-                    @Html.LabelFor(model => model.PlayerID, "PlayerID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.PlayerID, "Number of Players", htmlAttributes: new { @class = "control-label col-md-2" })
 
                     @Html.DropDownList("PlayerID", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.PlayerID, "", new { @class = "text-danger" })
                 </p>
                 <p>
-                    @Html.LabelFor(model => model.ESRBID, "ESRBID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.ESRBID, "ESRB Rating", htmlAttributes: new { @class = "control-label col-md-2" })
 
                     @Html.DropDownList("ESRBID", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.ESRBID, "", new { @class = "text-danger" })
@@ -61,19 +58,19 @@
                     @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                 </p>
                 <p>
-                    @Html.LabelFor(model => model.StockStatusID, "StockStatusID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.StockStatusID, "Game Status", htmlAttributes: new { @class = "control-label col-md-2" })
 
                     @Html.DropDownList("StockStatusID", null, "[-Choose A Status-]", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.StockStatusID, "", new { @class = "text-danger" })
                 </p>
                 <p>
-                    @Html.LabelFor(model => model.PublisherID, "PublisherID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.PublisherID, "Publisher", htmlAttributes: new { @class = "control-label col-md-2" })
 
                     @Html.DropDownList("PublisherID", null, "[-Choose a Publisher-]", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.PublisherID, "", new { @class = "text-danger" })
                 </p>
                 <p>
-                    @Html.LabelFor(model => model.MediaID, "MediaID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.MediaID, "MEdia Type Available", htmlAttributes: new { @class = "control-label col-md-2" })
 
                     @Html.DropDownList("MediaID", null, "[-Choose Media Type-]", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.MediaID, "", new { @class = "text-danger" })
@@ -97,7 +94,7 @@
                 @Html.ActionLink("Cancel", "index", null, new { @class = "btn btn-secondary" })
             </div>
             <div id="pFooterRight">
-                <input type="submit" value="Add Game" class="btn btn-primary" />
+                <input type="submit" value="Add Game" class="button primary" />
             </div>
             <div class="clearfix"></div>
 

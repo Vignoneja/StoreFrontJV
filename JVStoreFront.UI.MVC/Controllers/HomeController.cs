@@ -47,8 +47,7 @@ namespace JVStoreFront.UI.MVC.Controllers
             mm.IsBodyHtml = true;
             mm.ReplyToList.Add(cvm.Email);
 
-            SmtpClient smtp = new SmtpClient(EmailClient);
-            //NetworkCredential cred = new NetworkCredential(EmailUser, EmailPassword);
+            SmtpClient smtp = new SmtpClient(EmailClient);           
             smtp.Port = 8889;
 
             smtp.Credentials = new NetworkCredential(EmailUser, EmailPassword);
